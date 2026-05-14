@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Philosophy — Brian Goodell</title>
+  <meta name="description" content="How Brian Goodell thinks about and uses AI in his research and personal projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page-id="ai">
+
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html" class="site-nav__brand"><span>Brian Goodell</span></a>
+      <ul class="site-nav__links" role="list">
+        <li><a href="flavell-lab.html" class="nav__link">Flavell Lab</a></li>
+        <li><a href="projects.html"    class="nav__link">Projects</a></li>
+        <li><a href="hobbies.html"     class="nav__link">Hobbies</a></li>
+      </ul>
+        <div class="site-nav__socials" role="list">
+          <a href="mailto:briandalegoodell@gmail.com" class="social-icon" aria-label="Email" data-track-click="true" role="listitem">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true">
+              <rect x="1.5" y="3.5" width="13" height="9" rx="1"/>
+              <path d="M2 4.5l6 4.2 6-4.2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/briandalegoodell" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn" data-track-click="true" role="listitem">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M3.6 5.7H1V14h2.6V5.7Zm.2-2.4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM15 14h-2.6V9.9c0-1-.02-2.2-1.35-2.2-1.35 0-1.55 1.05-1.55 2.13V14H6.9V5.7h2.5v1.13h.04c.35-.66 1.2-1.35 2.46-1.35 2.63 0 3.12 1.73 3.12 3.97V14Z"/>
+            </svg>
+          </a>
+          <a href="https://github.com/briangoodell" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub" data-track-click="true" role="listitem">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 .2A8 8 0 0 0 5.47 15.79c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.16-.89-1.16-.72-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.67.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.22 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.52.56.83 1.28.83 2.15 0 3.07-1.87 3.75-3.65 3.94.29.25.54.74.54 1.49v2.21c0 .22.15.46.55.38A8 8 0 0 0 8 .2Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+  <main>
+
+    <header class="page-header content-section">
+      <div class="kicker">A note on tools &middot; 2026</div>
+      <h1 class="page-title">On working <em>with</em> AI</h1>
+      <p class="page-intro">
+        I have conflicted feelings about LLM usage (see below) so for the sake of honestly (and to highlight 
+        that I both have skills and can use AI efficiently) every project on this site carries a four-pip 
+        meter indicating how much AI was involved in making it.
+      </p>
+    </header>
+    
+    <section class="ai-page">
+      <button type="button" class="ai-meter " data-ai-level="0" aria-label="AI involvement: Hand-built. Click for details." aria-haspopup="dialog" aria-expanded="false">
+        <span class="ai-meter__pips" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>
+        <span class="ai-meter__label" style="display: block;">Hand-built (This Text Is My Own)</span>
+        <span class="ai-meter__pop" role="dialog" aria-label="AI involvement scale">
+          <span class="ai-meter__pop-title">AI Involvement</span>
+          <span class="ai-meter__scale">
+        <div class="ai-meter__level" data-current="true">
+          <span class="ai-meter__level-pips" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>
+          <span class="ai-meter__level-body">
+            <span class="ai-meter__level-name">Hand-built</span>
+            <span class="ai-meter__level-desc">No AI assistance.</span>
+          </span>
+        </div>
+        <div class="ai-meter__level" data-current="false">
+          <span class="ai-meter__level-pips" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span>
+          <span class="ai-meter__level-body">
+            <span class="ai-meter__level-name">LLM Consulted</span>
+            <span class="ai-meter__level-desc">Used AI for brainstorming, research, or rubber-ducking — not for output.</span>
+          </span>
+        </div>
+        <div class="ai-meter__level" data-current="false">
+          <span class="ai-meter__level-pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span>
+          <span class="ai-meter__level-body">
+            <span class="ai-meter__level-name">LLM Assisted</span>
+            <span class="ai-meter__level-desc">AI helped write or optimize portions, under close direction and review.</span>
+          </span>
+        </div>
+        <div class="ai-meter__level" data-current="false">
+          <span class="ai-meter__level-pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+          <span class="ai-meter__level-body">
+            <span class="ai-meter__level-name">LLM Authored</span>
+            <span class="ai-meter__level-desc">Heavily or entirely AI-generated; I orchestrated and audited.</span>
+          </span>
+        </div>
+      </button>
+
+      <section class="content-section" style="padding-left: 0; padding-right: 0; max-width: none;">
+        <div class="kicker" style="font-weight: bolder; font-size: large;">
+            If computers were "a bicycle for the mind," LLMs are the diesel truck.
+        </div>
+        <br />
+        <br />
+        <p>
+            I'm quite annoyed about the proliferation of LLMs, specifically in the coding space. Not because of any high-minded morality, (and not just because I was mentoring a ML class when it came out and people starting asking it questions instead of me) but rather, I love making things, and programming has been such a source of joy over the years. I have such fond memories of late nights with my college roommate going completely overboard on a CS final project which was not only a multi-player game, but secretly used all the players' computers to crack as many passwords as possible. The presentation, game tournament, and ultimate reveal were way more rewarding because of all the frustrations we'd encountered. 
+        </p>
+        <br />
+        <p>
+            Now, I'd like to talk about my transportation habits: I bike to work every day, even though it's a &lt;20min walk and love spending time outside. I bike, simply because it's faster and ultimately allows me to sleep more. However, I also have a car, which I don't use to commute. My van is almost exclusively used for hiking and skiing trips, or to drive large groups of friends around. Quite frankly, trying to drive to work would take longer, be more stressful, cost more, be worse for the planet, and separate me from the environment I'm navigating. Similarly, I don't bike to the mountains in a blizzard with all my ski gear.
+        </p>
+        <br />
+        <p>
+            I do, however, often drive myself out to places I want to bike or run. I've even driven out to a place, where I biked to a lake, which I swam across before running back to my bike... clearly different tasks within a given job require different approaches. I am never going to claim that my bike can travel faster than my car, but I think we've all seen pretty clearly the consequences of a society built on the expectation you'd always want to use a car, never a bike.
+        </p>
+        <br />
+        <p>
+            I know how to drive, maintain my car, change its oil, take it to the mechanic when I'm out of my depth. Likewise, I've been intentional about developing proficiency with LLMs and agentic systems; finding what they excel at and what takes too many iterations. I've tried to update that sense as the models improve. This approach has genuinely made me more efficient, but I firmly believe it's because I simultaneously want to understand what I work on. <i>I need to get on my bicycle, pedal with my own feet, and feel the wind on my face.</i> Luckily, my current position is easily assisted, but not easily replaced. I've used Claude to resolve package and environment issues, suggest promising materials for experiments, and even speed up sections of code I've written, but it seems unable to create experiments and tools that no one has thought of, and solve the problems that come with them. That remains in the realm of the two-wheeled. For now.
+        </p>
+        <!-- <p class="home-bio__para" style="margin-top: var(--space-4);">
+          I label these because the honest answer to &ldquo;did you use AI for this?&rdquo; is rarely
+          binary, and pretending otherwise erodes trust faster than the tool itself does.
+          A model can be a powerful research assistant without writing the paper; it can write
+          a function without understanding the system. Naming where it sat on a given project
+          keeps me honest about which skills I'm actually exercising.
+        </p>
+        <p class="home-bio__para">
+          [More to come &mdash; thoughts on review, attribution, and where I think the line
+          lives for research work specifically.]
+        </p> -->
+      </section>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__meta">
+        <span class="site-footer__brand">Brian <em>Goodell</em></span>
+      </p>
+      <ul class="site-footer__links" role="list">
+        <li><a href="https://github.com/briangoodell" class="footer-link" target="_blank" rel="noopener" data-track-click="true">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/briandalegoodell" class="footer-link" target="_blank" rel="noopener" data-track-click="true">LinkedIn</a></li>
+        <li><a href="mailto:briandalegoodell@gmail.com" class="footer-link" data-track-click="true">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+</body>
+</html>

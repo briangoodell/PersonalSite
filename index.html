@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brian Goodell</title>
+  <meta name="description" content="Brian Goodell — programmer, maker, and Research Technician at the MIT Flavell Lab.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page-id="home">
+
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html" class="site-nav__brand"><span>Brian Goodell</span></a>
+      <ul class="site-nav__links" role="list">
+        <li><a href="flavell-lab.html" class="nav__link">Flavell Lab</a></li>
+        <li><a href="projects.html"    class="nav__link">Projects</a></li>
+        <li><a href="hobbies.html"     class="nav__link">Hobbies</a></li>
+      </ul>
+        <div class="site-nav__socials" role="list">
+          <a href="mailto:briandalegoodell@gmail.com" class="social-icon" aria-label="Email" data-track-click="true" role="listitem">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true">
+              <rect x="1.5" y="3.5" width="13" height="9" rx="1"/>
+              <path d="M2 4.5l6 4.2 6-4.2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/briandalegoodell" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn" data-track-click="true" role="listitem">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M3.6 5.7H1V14h2.6V5.7Zm.2-2.4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM15 14h-2.6V9.9c0-1-.02-2.2-1.35-2.2-1.35 0-1.55 1.05-1.55 2.13V14H6.9V5.7h2.5v1.13h.04c.35-.66 1.2-1.35 2.46-1.35 2.63 0 3.12 1.73 3.12 3.97V14Z"/>
+            </svg>
+          </a>
+          <a href="https://github.com/briangoodell" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub" data-track-click="true" role="listitem">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 .2A8 8 0 0 0 5.47 15.79c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.16-.89-1.16-.72-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.67.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.22 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.52.56.83 1.28.83 2.15 0 3.07-1.87 3.75-3.65 3.94.29.25.54.74.54 1.49v2.21c0 .22.15.46.55.38A8 8 0 0 0 8 .2Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+  <main>
+
+    <section class="home-hero">
+      <div class="home-hero__text">
+        <div class="home-hero__eyebrow">
+          <span class="home-hero__eyebrow-dot" aria-hidden="true"></span>
+          <span>CAMBRIDGE, MA
+</span>
+        </div>
+        <h1 class="home-hero__name" data-content-id="hero-name">Brian <em>Goodell</em></h1>
+        <!-- <p class="home-hero__role" data-content-id="hero-role">Research Technician
+building tools for neuroscience</p> -->
+        <p class="home-hero__role" data-content-id="hero-role">Versatile Programmer and Problem Solver</p>
+      </div>
+      <div class="home-hero__photo-wrap">
+        <img src="images/headshot.jpg" alt="Brian Goodell" class="home-hero__photo">
+      </div>
+    </section>
+
+    <section class="home-bio content-section">
+      <p class="home-bio__para" data-content-id="bio-intro">
+        Hello! I'm Brian, a programmer and maker currently building computational and physical
+        tools for neuroscience research in the <a href="flavell-lab.html">Flavell Lab</a>
+        at MIT. I come from academic backgrounds in Computer Science and Political Science, with no formal 
+        Neuro training, which reflects my philosophy of cross-disciplinary work and broad interest in 
+        learning. Outside the lab I'm usually running, dancing, or working on projects to make my life better.
+      </p>
+      <p class="home-bio__para" data-content-id="bio-research">
+        Understanding how computational (living or silicon) systems integrate information and
+        make decisions is a fascinating question, but ultimately intractable with most
+        &ldquo;intelligent&rdquo; systems. So why not start simpler?
+        <em>C. elegans</em> is a tiny nematode with 302 neurons; few enough that we can watch
+        activity in every neuron across the whole brain as the animal moves freely, yet enough
+        that it can perform complex navigation. My work builds the tools to exploit this: a laser
+        system controlling the temperature the worm experiences, and a real-time imaging pipeline
+        capturing how its nervous system responds &mdash; providing an unusually clean window into
+        how brains process information and make decisions.
+      </p>
+    </section>
+
+    <section class="home-links content-section">
+      <div class="kicker" style="margin-bottom: var(--space-4);">MORE OF MY WORK</div>
+      <div class="home-links__grid">
+        <a href="flavell-lab.html" class="link-card" data-index="01" data-track-click="true">
+          <span class="link-card__title">Flavell Lab</span>
+          <span class="link-card__arrow" aria-hidden="true">↗</span>
+          <span class="link-card__desc">Laser thermotaxis, real-time neural imaging, and brain alignment for <em>C. elegans</em>.</span>
+        </a>
+        <a href="projects.html" class="link-card" data-index="02" data-track-click="true">
+          <span class="link-card__title">Projects</span>
+          <span class="link-card__arrow" aria-hidden="true">↗</span>
+          <span class="link-card__desc">Work I've done both on a computer and with my hands.</span>
+        </a>
+        <a href="hobbies.html" class="link-card" data-index="03" data-track-click="true">
+          <span class="link-card__title">Hobbies</span>
+          <span class="link-card__arrow" aria-hidden="true">↗</span>
+          <span class="link-card__desc">Running, dancing, skiing, cooking, and more.</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__meta">
+        <span class="site-footer__brand">Brian <em>Goodell</em></span>
+      </p>
+      <ul class="site-footer__links" role="list">
+        <li><a href="https://github.com/briangoodell" class="footer-link" target="_blank" rel="noopener" data-track-click="true">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/briandalegoodell" class="footer-link" target="_blank" rel="noopener" data-track-click="true">LinkedIn</a></li>
+        <li><a href="mailto:briandalegoodell@gmail.com" class="footer-link" data-track-click="true">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+</body>
+</html>
