@@ -101,7 +101,7 @@ const PROJECTS = [
   {
     id:          'roosrun',
     name:        'RoosRun',
-    description: 'A website built to help my college cross country team stay connected — run logging, social features, and more.',
+    description: 'A website built to help my college cross country team stay connected — run logging, social features, and more. (keeping the aesthetic of the previous site)',
     badge:       'solo',
     github:      null,
     externalUrl: 'https://roosrun.com',
@@ -134,7 +134,7 @@ const PROJECTS = [
     github:      null,
     externalUrl: null,
     detailPage:  null,
-    photo:       null,
+    photo:       'images/hobbies/BuffaloClasses.jpg',
     phTone:      'ph-brown',
     badgeLabel:  null,
     aiLevel:     0,
@@ -147,7 +147,7 @@ const PROJECTS = [
     github:      null,
     externalUrl: null,
     detailPage:  null,
-    photo:       null,
+    photo:       'images/hobbies/TrainDominosCenter.jpg',
     phTone:      'ph-terra',
     badgeLabel:  null,
     aiLevel:     0,
@@ -160,7 +160,7 @@ const PROJECTS = [
     github:      null,
     externalUrl: null,
     detailPage:  null,
-    photo:       null,
+    photo:       'images/hobbies/MountainGlass.jpg',
     phTone:      'ph-sage',
     badgeLabel:  null,
     aiLevel:     0,
@@ -240,6 +240,23 @@ function buildAIMeterHTML(level, opts = {}) {
 /* Mobile-friendly toggle: click on the meter opens the popover.
    Click outside or on another meter closes it. */
 function attachAIMeterToggles(root = document) {
+  function repositionMeter(meter) {
+    const rect = meter.getBoundingClientRect();
+    meter.classList.toggle('ai-meter--right', rect.left + 318 > window.innerWidth - 8);
+    meter.classList.toggle('ai-meter--up',    rect.bottom + 240 > window.innerHeight - 8);
+  }
+
+  // Reposition on hover/focus before CSS transition kicks in
+  root.addEventListener('mouseenter', (e) => {
+    const meter = e.target.closest('.ai-meter');
+    if (meter) repositionMeter(meter);
+  }, true);
+
+  root.addEventListener('focusin', (e) => {
+    const meter = e.target.closest('.ai-meter');
+    if (meter) repositionMeter(meter);
+  });
+
   root.addEventListener('click', (e) => {
     const trigger = e.target.closest('.ai-meter');
     const link = e.target.closest('.ai-meter__pop-link, .ai-meter__pop a');
@@ -255,6 +272,7 @@ function attachAIMeterToggles(root = document) {
         el.setAttribute('aria-expanded', 'false');
       });
       if (!wasOpen) {
+        repositionMeter(trigger);
         trigger.classList.add('is-open');
         trigger.setAttribute('aria-expanded', 'true');
       }
