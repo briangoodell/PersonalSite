@@ -822,6 +822,47 @@ body[data-page-id="home"] .site-footer { margin-top: var(--space-8); }
   transition: transform var(--transition-fast), color var(--transition-fast);
 }
 
+.link-card__title-link {
+  display: contents;
+}
+
+.link-card__sublinks {
+  grid-column: 2 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-bottom: var(--space-1);
+}
+
+.link-card__sublink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  padding: 0.2em 0.7em;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--fern-deep);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.link-card__sublink::after {
+  content: '↗';
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
+.link-card__sublink:hover {
+  background: var(--fern-deep);
+  color: white;
+  border-color: var(--fern-deep);
+  text-decoration: none;
+}
+
 @media (max-width: 600px) {
   .link-card {
     grid-template-columns: 2em 1fr auto;
@@ -830,6 +871,7 @@ body[data-page-id="home"] .site-footer { margin-top: var(--space-8); }
   }
   .link-card__title { font-size: var(--text-xl); }
   .link-card__desc  { grid-column: 1 / -1; }
+  .link-card__sublinks { grid-column: 1 / -1; }
 }
 
 /* ============================================================
@@ -1090,6 +1132,23 @@ body[data-page-id="home"] .site-footer { margin-top: var(--space-8); }
 .project-card:focus-within { z-index: 60; }
 .project-card:hover { transform: translateY(-2px); }
 .project-card[data-hidden="true"] { display: none; }
+
+@keyframes card-highlight {
+  0%, 25% {
+    outline: 2px solid var(--fern);
+    outline-offset: 4px;
+    background-color: rgba(74, 103, 65, 0.05);
+  }
+  100% {
+    outline: 2px solid transparent;
+    outline-offset: 4px;
+    background-color: transparent;
+  }
+}
+
+.project-card--highlight {
+  animation: card-highlight 2.4s ease-out forwards;
+}
 
 /* Stretched link — makes the whole card clickable */
 .project-card__primary-link::after {
@@ -1665,6 +1724,94 @@ body[data-page-id="home"] .site-footer { margin-top: var(--space-8); }
 @media (max-width: 480px) {
   .site-nav__links { gap: var(--space-3); }
 }
+
+/* ============================================================
+   VIDEO PLAYER
+   ============================================================ */
+.video-player {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--paper-2);
+  margin-top: var(--space-3);
+  border: 1px solid var(--rule);
+  outline: none;
+  display: flex;
+  justify-content: center;
+}
+
+.video-player:focus-visible {
+  outline: 2px solid var(--fern);
+  outline-offset: 3px;
+}
+
+.video-player__video {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  vertical-align: bottom;
+}
+
+.video-player__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(31, 24, 18, 0.28);
+  transition:
+    background var(--transition-base),
+    opacity var(--transition-base);
+}
+
+.video-player.is-playing .video-player__overlay {
+  background: transparent;
+  opacity: 0;
+}
+
+.video-player.is-playing:hover .video-player__overlay {
+  background: rgba(31, 24, 18, 0.18);
+  opacity: 1;
+}
+
+.video-player__btn {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--paper-on-ink);
+  color: var(--fern-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 2px 10px rgba(31, 24, 18, 0.4),
+    0 0 0 5px rgba(241, 231, 210, 0.18);
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.video-player:hover .video-player__btn {
+  transform: scale(1.09);
+  background: var(--paper);
+}
+
+.vp-icon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  transition: opacity var(--transition-fast);
+}
+
+.vp-icon--play  { opacity: 1; margin-left: 3px; }
+.vp-icon--pause { opacity: 0; }
+
+.video-player.is-playing         .vp-icon--play  { opacity: 0; }
+.video-player.is-playing:hover   .vp-icon--pause { opacity: 1; }
 
 /* ============================================================
    PRINT

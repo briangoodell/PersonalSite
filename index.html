@@ -53,7 +53,7 @@
         <h1 class="home-hero__name" data-content-id="hero-name">Brian <em>Goodell</em></h1>
         <!-- <p class="home-hero__role" data-content-id="hero-role">Research Technician
 building tools for neuroscience</p> -->
-        <p class="home-hero__role" data-content-id="hero-role">Programmer and Problem Solver</p>
+        <p class="home-hero__role" data-content-id="hero-role">Computer Scientist and Problem Solver</p>
       </div>
       <div class="home-hero__photo-wrap">
         <img src="images/headshot.jpg" alt="Brian Goodell" class="home-hero__photo">
@@ -66,15 +66,17 @@ building tools for neuroscience</p> -->
         tools for neuroscience research in the <a href="flavell-lab.html">Flavell Lab</a>
         at MIT. I come from academic backgrounds in Computer Science and Political Science, with no formal 
         Neuro training, which reflects my philosophy of cross-disciplinary work and broad interest in 
-        learning. Outside the lab I'm usually running, dancing, or working on projects to make my life easier.
+        learning. Outside the lab I'm usually running, dancing, or working on projects to make my life better.
       </p>
+      <p class="kicker kicker--no-rule" style="margin-top: var(--space-5);">&emsp;&emsp;Why neuro?</p>
       <p class="home-bio__para" data-content-id="bio-research">
-        Understanding how computational (living or silicon) systems integrate information and
+        Understanding how computational (living or silicon) systems use information to
         make decisions is a fascinating question, but ultimately intractable with most
-        &ldquo;intelligent&rdquo; systems. So why not start simpler?
+        &ldquo;intelligent&rdquo; systems. So simplify the problem.
         <em>C. elegans</em> is a tiny nematode with 302 neurons; few enough that we can watch
         activity in every neuron across the whole brain as the animal moves freely, yet enough
-        that it can perform complex navigation. My work builds the tools to exploit this: a laser
+        that it can perform complex, goal-directed navigation, among many other complex behaviors.
+        <br />My work builds the tools to exploit this: a laser
         system controlling the temperature the worm experiences, and a real-time imaging pipeline
         capturing how its nervous system responds &mdash; providing an unusually clean window into
         how brains process information and make decisions.
@@ -84,21 +86,39 @@ building tools for neuroscience</p> -->
     <section class="home-links content-section">
       <div class="kicker" style="margin-bottom: var(--space-4);">Poke Around</div>
       <div class="home-links__grid">
-        <a href="flavell-lab.html" class="link-card" data-index="01" data-track-click="true">
-          <span class="link-card__title">Flavell Lab</span>
-          <span class="link-card__arrow" aria-hidden="true">↗</span>
-          <span class="link-card__desc">Laser thermotaxis, real-time neural imaging, and brain alignment for <em>C. elegans</em>.</span>
-        </a>
-        <a href="projects.html" class="link-card" data-index="02" data-track-click="true">
-          <span class="link-card__title">Projects</span>
-          <span class="link-card__arrow" aria-hidden="true">↗</span>
+        <div class="link-card" data-index="01">
+          <a href="flavell-lab.html" class="link-card__title-link" data-track-click="true">
+            <span class="link-card__title">Flavell Lab</span>
+            <span class="link-card__arrow" aria-hidden="true">↗</span>
+          </a>
+          <span class="link-card__desc">Laser thermotaxis, real-time neural imaging, and brain alignment</span>
+          <div class="link-card__sublinks">
+            <a href="flavell-lab.html#autocell" class="link-card__sublink" data-track-click="true">Mind Reading</a>
+            <a href="flavell-lab.html#laser" class="link-card__sublink" data-track-click="true">Lasers</a>
+          </div>
+        </div>
+        <div class="link-card" data-index="02">
+          <a href="projects.html" class="link-card__title-link" data-track-click="true">
+            <span class="link-card__title">Projects</span>
+            <span class="link-card__arrow" aria-hidden="true">↗</span>
+          </a>
           <span class="link-card__desc">Work I've done both on a computer and with my hands.</span>
-        </a>
-        <a href="hobbies.html" class="link-card" data-index="03" data-track-click="true">
-          <span class="link-card__title">Hobbies</span>
-          <span class="link-card__arrow" aria-hidden="true">↗</span>
-          <span class="link-card__desc">Running, dancing, skiing, reading recs</span>
-        </a>
+          <div class="link-card__sublinks">
+            <a href="projects.html#project-tanks" class="link-card__sublink" data-track-click="true">Password Cracking</a>
+            <a href="projects.html#project-self-tracking" class="link-card__sublink" data-track-click="true">Big Brother Is Watching</a>
+            <a href="projects.html#project-van" class="link-card__sublink" data-track-click="true">A Van Down By The River</a>
+          </div>
+        </div>
+        <div class="link-card" data-index="03">
+          <a href="hobbies.html" class="link-card__title-link" data-index="03" data-track-click="true">
+            <span class="link-card__title">Hobbies</span>
+            <span class="link-card__arrow" aria-hidden="true">↗</span>
+          </a>
+          <span class="link-card__desc">Running, dancing, skiing, reading</span>
+            <div class="link-card__sublinks">
+              <a href="hobbies.html#reading" class="link-card__sublink" data-track-click="true">Reading Recommendations</a>
+            </div>
+        </div>
       </div>
     </section>
 

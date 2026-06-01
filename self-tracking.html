@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="images/BG_favicon.png">
 </head>
 <body data-page-id="self-tracking">
 
@@ -117,10 +118,18 @@
             my work was throwing away to automatically open my curtains incrementally over a configurable window of time 
             before my alarm, simulating a sunrise and preparing me to wake up.
           </p>
-          <p>See it star in a video I made for my college's TikTok</p>
-          <video>
-            <source src="images\projects\CurtainsVid.mp4" type="video/mp4">
-          </video>
+          <p>See it star in a short video I made for my college's TikTok <i>(video has sound)</i></p>
+          <div class="video-player" id="curtains-player" tabindex="0" role="button" aria-label="Play video">
+            <video class="video-player__video" loop preload="metadata" playsinline>
+              <source src="images/projects/CurtainsVid.mp4" type="video/mp4">
+            </video>
+            <div class="video-player__overlay" aria-hidden="true">
+              <span class="video-player__btn">
+                <svg class="vp-icon vp-icon--play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="vp-icon vp-icon--pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -142,5 +151,29 @@
 
   <script src="js/projects.js"></script>
   <script src="js/api.js"></script>
+  <script>
+    (function () {
+      var player = document.getElementById('curtains-player');
+      if (!player) return;
+      var video = player.querySelector('video');
+
+      function toggle() {
+        if (video.paused) {
+          video.play();
+          player.classList.add('is-playing');
+          player.setAttribute('aria-label', 'Pause video');
+        } else {
+          video.pause();
+          player.classList.remove('is-playing');
+          player.setAttribute('aria-label', 'Play video');
+        }
+      }
+
+      player.addEventListener('click', toggle);
+      player.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    })();
+  </script>
 </body>
 </html>

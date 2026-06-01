@@ -114,7 +114,7 @@ const PROJECTS = [
   {
     id:          'roosrun',
     name:        'RoosRun',
-    description: 'A website built to help my college cross country team stay connected — run logging, social features, and more. (keeping the aesthetic of the previous site)',
+    description: 'A website built to help my college cross country team stay connected: run logging, social features, and more. (keeping the aesthetic of the previous site)',
     badge:       'solo',
     github:      null,
     externalUrl: 'https://roosrun.com',
@@ -127,7 +127,7 @@ const PROJECTS = [
   {
     id:          'personalSite',
     name:        'This Website',
-    description: 'Creating a personal website always felt daunting, so as someone who has made several websites, I decided to treat it as an experiment on how efficiently LLMs might improve my workflow.',
+    description: 'I wanted a website to serve as a public-facing repository of my work. Having made several websites, I decided to treat it as an experiment on how efficiently LLMs might improve my workflow.',
     badge:       'solo',
     github:      null,
     externalUrl: null,
@@ -142,7 +142,7 @@ const PROJECTS = [
   {
     id:          'van',
     name:        'The Van',
-    description: 'Converted my family\'s minivan into a camper over COVID — custom futon, solar panels, and a cellular antenna. Spent half of freshman year taking classes online from National Parks.',
+    description: 'Converted my family\'s minivan into a camper over COVID: custom futon, solar panels, and a cellular antenna. Spent half of freshman year taking classes online from National Parks.',
     badge:       'solo',
     github:      null,
     externalUrl: null,
@@ -155,7 +155,7 @@ const PROJECTS = [
   {
     id:          'woodworking',
     name:        'Woodworking',
-    description: 'Three and a half years in a makerspace making furniture, art, and project components. Work includes intarsia, a walnut table, chopsticks, and train domino sets.',
+    description: 'Three and a half years working in a makerspace both making & teaching. My creations include intarsia, a walnut table, chopsticks, and train domino sets.',
     badge:       'solo',
     github:      null,
     externalUrl: null,
@@ -400,6 +400,17 @@ function initProjectsPage() {
 
   if (grid) {
     PROJECTS.forEach(p => grid.appendChild(buildProjectCard(p)));
+
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target && target.classList.contains('project-card')) {
+        requestAnimationFrame(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.add('project-card--highlight');
+        });
+      }
+    }
 
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
