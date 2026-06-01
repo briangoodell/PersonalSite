@@ -78,7 +78,7 @@ const PROJECTS = [
     github:      'https://github.com/bradleyramsey/TanksProject',
     externalUrl: null,
     detailPage:  null,
-    photo:       null,
+    photo:       'images/projects/TanksGame.png',
     phTone:      'ph-brown',
     badgeLabel:  'OS Final',
     aiLevel:     0,
@@ -91,13 +91,26 @@ const PROJECTS = [
     github:      'https://github.com/GrinSync',
     externalUrl: null,
     detailPage:  null,
-    photo:       null,
+    photo:       'images/projects/GrinSync.png',
     phTone:      'ph-sage',
     badgeLabel:  'Software Dev Final',
     aiLevel:     0,
   },
 
   /* ── Solo ────────────────────────────────────────────────── */
+  {
+    id:          'self-tracking',
+    name:        'Personal Systems',
+    description: 'What I make should improve my life. This includes projects like hourly time-tracking (3 years), running & health data analysis, and automating my curtains to wake me up incrementally and naturally.',
+    badge:       'solo',
+    github:      null,
+    externalUrl: null,
+    detailPage:  'self-tracking.html',
+    photo:       'images/projects/DayTrackingSnippet.png',
+    phTone:      'ph-sage',
+    badgeLabel:  null,
+    aiLevel:     0,
+  },
   {
     id:          'roosrun',
     name:        'RoosRun',
@@ -106,7 +119,7 @@ const PROJECTS = [
     github:      null,
     externalUrl: 'https://roosrun.com',
     detailPage:  null,
-    photo:       null,
+    photo:       'images/projects/RoosRunScreenshot.png',
     phTone:      'ph-terra',
     badgeLabel:  null,
     aiLevel:     0,
@@ -119,7 +132,7 @@ const PROJECTS = [
     github:      null,
     externalUrl: null,
     detailPage:  null,
-    photo:       null,
+    photo:       'images/projects/PersonalSiteScreenshot.png',
     phTone:      'ph-terra',
     badgeLabel:  null,
     aiLevel:     4,
@@ -367,6 +380,17 @@ function buildProjectCard(project) {
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap">${githubExtra}${linkHtml}</div>
     </div>
   `;
+
+  if (primaryUrl) {
+    article.addEventListener('click', (e) => {
+      if (e.target.closest('.ai-meter, a, button')) return;
+      if (project.detailPage) {
+        window.location.href = primaryUrl;
+      } else {
+        window.open(primaryUrl, '_blank', 'noopener');
+      }
+    });
+  }
 
   return article;
 }

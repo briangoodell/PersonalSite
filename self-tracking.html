@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Systems — Brian Goodell</title>
+  <meta name="description" content="How Brian Goodell uses data and technology to improve his day-to-day life — three years of hourly time tracking, annual self-debriefs, and a hardware wake-up light.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page-id="self-tracking">
+
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a href="index.html" class="site-nav__brand"><span class="nav-full">Brian Goodell</span><span class="nav-short">Brian</span></a>
+      <ul class="site-nav__links" role="list">
+        <li><a href="flavell-lab.html" class="nav__link"><span class="nav-full">Flavell Lab</span><span class="nav-short">Flavell</span></a></li>
+        <li><a href="projects.html"    class="nav__link">Projects</a></li>
+        <li><a href="hobbies.html"     class="nav__link">Hobbies</a></li>
+      </ul>
+      <div class="site-nav__socials" role="list">
+        <a href="mailto:briandalegoodell@gmail.com" class="social-icon" aria-label="Email" data-track-click="true" role="listitem">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true">
+            <rect x="1.5" y="3.5" width="13" height="9" rx="1"/>
+            <path d="M2 4.5l6 4.2 6-4.2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/briandalegoodell" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn" data-track-click="true" role="listitem">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M3.6 5.7H1V14h2.6V5.7Zm.2-2.4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM15 14h-2.6V9.9c0-1-.02-2.2-1.35-2.2-1.35 0-1.55 1.05-1.55 2.13V14H6.9V5.7h2.5v1.13h.04c.35-.66 1.2-1.35 2.46-1.35 2.63 0 3.12 1.73 3.12 3.97V14Z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/briangoodell" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub" data-track-click="true" role="listitem">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 .2A8 8 0 0 0 5.47 15.79c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.16-.89-1.16-.72-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.67.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.22 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.52.56.83 1.28.83 2.15 0 3.07-1.87 3.75-3.65 3.94.29.25.54.74.54 1.49v2.21c0 .22.15.46.55.38A8 8 0 0 0 8 .2Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <header class="page-header content-section">
+      <div class="kicker">Solo &middot; Data &amp; Hardware</div>
+      <h1 class="page-title"><em>Personal</em> Systems</h1>
+      <p class="page-intro">
+        I love solving puzzles, a mindset which can seep into my daily activities. These are projects
+        where I scraped myself form data or built something to interact with my environment, with the results
+        improving my day-to-day life.
+      </p>
+    </header>
+
+    <!-- Time Tracking -->
+    <section class="lab-project" id="time-tracking">
+      <div class="lab-project__header">
+        <h2 class="lab-project__title">Time Tracking</h2>
+        <div class="lab-project__links">
+          <span data-ai-meter data-level="0" data-align="right"></span>
+        </div>
+      </div>
+      <div class="lab-project__body"  style="grid-template-columns: none">
+        <!-- <div class="lab-project__photo-wrap">
+          <div class="ph-image" data-label="Time Tracking" style="--ph-fill: var(--ph-moss); --ph-ratio: 80%;"></div>
+        </div> -->
+        <div class="lab-project__text">
+          <p>
+            For three years I logged what I was doing every hour of every day, and how I felt at the end of each day. 
+            I was in the habit of yearly reflections, but after each of those years I actually had empirical data: 
+            how I spent my time, how I felt after spending time doing something, which things I tended to deprioritize
+            when I had more work or got into a relationship, and so much more.
+          </p>
+          <p>
+            While many of the findings were probably uninteresting to a non-me person, I (unsurprisingly)
+            found that I was significantly happier on days where I spent more time with friends, a turned
+            which was proportional with amount that day. Something slightly different was true with family,
+            I was much happier on days with 1-2 family hours (likely catching up over the phone),
+            but there was no more additional gain in happiness past that (likely days I visited home 
+            (sometimes family can just tire you out)).
+          </p>
+          <p>
+            Days where I spent a large amount of time on my phone watching YouTube or scrolling Instagram
+            were more unhappy, this lead me to decrease total phone time by <b>nearly 200 hours</b> between the
+            first and second years and another 50 after that. A large part of this was my quitting reddit cold turkey.
+            This was mostly replaced with increased reading (+252 hrs first-last years) and sleeping (+212 hrs).
+            Other interesting changes include increased time with friends (+362 hrs), increased exercise (+82 hrs),
+            increased time spent on dates / with girlfriend (+ 137hrs, although not entirely in my control), more time to
+            meditate (+52 hrs) and more time playing board games / DnD with friends (+1 hr). These were mostly possible due
+            to decreased video game time (-124 hrs), decreased TV/movie watching (-177 hr), and more efficient studying 
+            decreasing the time I spend it and homework (-216 hrs).
+          </p>
+          <p>
+            This was a project I was unsure of at first, but I'm immeasurably better off for it. 
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curtain Opener -->
+    <section class="lab-project" id="curtain-opener">
+      <div class="lab-project__header">
+        <h2 class="lab-project__title">Sunrise <em>Curtain</em> Opener</h2>
+        <div class="lab-project__links">
+          <span data-ai-meter data-level="0" data-align="right"></span>
+        </div>
+      </div>
+      <div class="lab-project__body" style="grid-template-columns: none">
+        <div class="lab-project__text">
+          <p>
+            Humans are not meant to go from REM sleep to full alert but deal with it, body. It's a response for
+            emergency situations (the lion is already eating your brother) not approved for daily use. Unfortunately 
+            for my brain, I don't have good enough sleep hygiene to naturally wake up at around the same time. Luckily,
+            we don't need to do this by ourselves, and out bodies naturally take cues from the environment. So,
+            instead of just popping a ton of overpowered LEDs in my room (I did strongly consider it) I repurposed a printer
+            my work was throwing away to automatically open my curtains incrementally over a configurable window of time 
+            before my alarm, simulating a sunrise and preparing me to wake up.
+          </p>
+          <p>See it star in a video I made for my college's TikTok</p>
+          <video>
+            <source src="images\projects\CurtainsVid.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__meta">
+        <span class="site-footer__brand">Brian <em>Goodell</em></span>
+      </p>
+      <ul class="site-footer__links" role="list">
+        <li><a href="https://github.com/briangoodell" class="footer-link" target="_blank" rel="noopener" data-track-click="true">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/briandalegoodell" class="footer-link" target="_blank" rel="noopener" data-track-click="true">LinkedIn</a></li>
+        <li><a href="mailto:briandalegoodell@gmail.com" class="footer-link" data-track-click="true">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/projects.js"></script>
+  <script src="js/api.js"></script>
+</body>
+</html>
