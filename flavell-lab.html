@@ -201,6 +201,14 @@
   <script src="js/projects.js"></script>
   <script src="js/api.js"></script>
   <script>
+    // Fetch both GIFs as blobs, then assign fresh object URLs in the same tick so both start at frame 0.
+    (async function syncCompareGifs() {
+      const imgs = [...document.querySelectorAll('.img-compare img')];
+      const blobs = await Promise.all(imgs.map(i => fetch(i.src).then(r => r.blob())));
+      const urls = blobs.map(b => URL.createObjectURL(b));
+      imgs.forEach((img, i) => { img.src = urls[i]; });
+    })();
+
     document.querySelectorAll('.img-compare').forEach(el => {
       const set = pct => el.style.setProperty('--x', pct + '%');
 
