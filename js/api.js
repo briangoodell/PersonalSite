@@ -17,8 +17,8 @@
      bleach.clean() before storing or serving to prevent XSS.
    ============================================================ */
 
-// const API_BASE_URL          = 'https://api.briandalegoodell.com';
-const API_BASE_URL          = 'http://localhost:8000';
+const API_BASE_URL          = 'https://api.briandalegoodell.com';
+// const API_BASE_URL          = 'http://localhost:8000';
 const PAGE_TRACKING_ENABLED = true;
 const CONTENT_FETCH_TIMEOUT = 1500;  // ms — fall back to defaults after this
 
