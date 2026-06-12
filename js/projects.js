@@ -50,7 +50,7 @@ const PROJECTS = [
     github:      null,
     externalUrl: 'http://laser.briandalegoodell.com/',
     detailPage:  'flavell-lab.html#laser',
-    photo:       'images/flavell/v6-clear-worm.png',
+    photo:       'images/flavell/v6SlideWithWorm.png',
     phTone:      'ph-terra',
     badgeLabel:  'Flavell Lab',
     aiLevel:     1,

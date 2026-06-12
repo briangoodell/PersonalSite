@@ -1,10 +1,10 @@
 /* ============================================================
    DJANGO API INTEGRATION
    ============================================================
-   Handles three things:
-     1. Visitor & event tracking (visits, clicks, time-on-page)
-     2. Dynamic content overrides fetched from the API
-     3. Graceful fallback to defaults when API is unavailable
+   On page load, fires a single GET to /hello with tracking
+   info in the request body. If the response includes content
+   overrides, they are applied to matching [data-content-id]
+   elements; otherwise the page is left as-is.
 
    HOW TO ENABLE:
      1. Set API_BASE_URL to your Django server URL
@@ -13,14 +13,60 @@
         your GitHub Pages domain.
 
    SECURITY NOTE (for Django side):
-     Content served from /api/content/{pageId} is injected via
-     innerHTML. Always sanitize with bleach.clean() before
-     storing or serving content to prevent XSS.
+     Content injected via innerHTML must be sanitized with
+     bleach.clean() before storing or serving to prevent XSS.
    ============================================================ */
 
-const API_BASE_URL          = '';    // e.g. 'https://api.yourdomain.com'
-const PAGE_TRACKING_ENABLED = false; // Set true when Django is live
+// const API_BASE_URL          = 'https://api.briandalegoodell.com';
+const API_BASE_URL          = 'http://localhost:8000';
+const PAGE_TRACKING_ENABLED = true;
 const CONTENT_FETCH_TIMEOUT = 1500;  // ms — fall back to defaults after this
+
+/* ---- Canvas fingerprinting -------------------------------- */
+
+let _canvasFingerprint = null;
+
+function getCanvasFingerprint() {
+  if (_canvasFingerprint) return _canvasFingerprint;
+
+  const cached = sessionStorage.getItem('bg_canvas_fp');
+  if (cached) {
+    _canvasFingerprint = cached;
+    return _canvasFingerprint;
+  }
+
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.width  = 200;
+    canvas.height = 40;
+    const ctx = canvas.getContext('2d');
+
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle    = '#f60';
+    ctx.fillRect(10, 1, 100, 20);
+
+    ctx.fillStyle = '#069';
+    ctx.font      = '14px Arial';
+    ctx.fillText('canvas fp \u{1F300}', 2, 15);
+
+    ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
+    ctx.font      = '12px Times New Roman';
+    ctx.fillText('canvas fp \u{1F300}', 4, 30);
+
+    const raw = canvas.toDataURL();
+    // djb2-style hash over the data URL
+    let h = 5381;
+    for (let i = 0; i < raw.length; i++) {
+      h = (((h << 5) + h) ^ raw.charCodeAt(i)) >>> 0;
+    }
+    _canvasFingerprint = h.toString(16).padStart(8, '0');
+  } catch (_) {
+    _canvasFingerprint = 'unsupported';
+  }
+
+  sessionStorage.setItem('bg_canvas_fp', _canvasFingerprint);
+  return _canvasFingerprint;
+}
 
 /* ---- Session management ----------------------------------- */
 
@@ -50,16 +96,36 @@ async function trackPost(endpoint, payload) {
   } catch (_) { /* silent */ }
 }
 
-/* ---- Visit tracking --------------------------------------- */
+/* ---- Hello (visit tracking + optional content overrides) -- */
 
-function trackPageVisit(pageId, sessionId) {
-  return trackPost('/api/visits', {
-    pageId,
-    sessionId,
-    timestamp: new Date().toISOString(),
-    referrer:  document.referrer || null,
-    userAgent: navigator.userAgent,
-  });
+async function helloPage(pageId, sessionId, referralSource) {
+  if (!API_BASE_URL || !PAGE_TRACKING_ENABLED) return;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), CONTENT_FETCH_TIMEOUT);
+  try {
+    const resp = await fetch(`${API_BASE_URL}/hello`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        pageId,
+        sessionId,
+        fingerprint:    getCanvasFingerprint(),
+        timestamp:      new Date().toISOString(),
+        referrer:       document.referrer || null,
+        referralSource: referralSource || null,
+        userAgent:      navigator.userAgent,
+      }),
+      signal: controller.signal,
+    });
+    clearTimeout(timer);
+    if (!resp.ok) return;
+    const data = await resp.json();
+    if (data.sections) applyContentOverrides(data.sections);
+    return data.visitId ?? null;
+  } catch (_) {
+    clearTimeout(timer);
+  }
+  return null;
 }
 
 /* ---- Click tracking (delegated) --------------------------- */
@@ -72,7 +138,7 @@ function attachClickTracking(pageId, sessionId) {
     const href = target.getAttribute('href')
       || target.dataset.target
       || target.textContent.trim();
-    trackPost('/api/events', {
+    trackPost('/bye', {
       type:      'click',
       target:    href,
       pageId,
@@ -84,47 +150,36 @@ function attachClickTracking(pageId, sessionId) {
 
 /* ---- Duration tracking (sendBeacon on unload) ------------- */
 
-function attachDurationTracking(pageId, sessionId, startTime) {
+function attachDurationTracking(pageId, sessionId, startTime, visitId) {
   if (!API_BASE_URL || !PAGE_TRACKING_ENABLED) return;
-  window.addEventListener('beforeunload', () => {
-    const seconds = Math.round((Date.now() - startTime) / 1000);
-    const payload = JSON.stringify({ type: 'duration', seconds, pageId, sessionId });
-    // Blob + explicit type required so Django's JSONParser accepts the request
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(
-        `${API_BASE_URL}/api/events`,
-        new Blob([payload], { type: 'application/json' })
-      );
+
+  let activeDuration = 0;
+  let visibleSince = document.visibilityState === 'visible' ? Date.now() : null;
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      if (visibleSince !== null) {
+        activeDuration += Date.now() - visibleSince;
+        visibleSince = null;
+      }
     } else {
-      try {
-        fetch(`${API_BASE_URL}/api/events`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: payload,
-          keepalive: true,
-        });
-      } catch (_) { /* silent */ }
+      visibleSince = Date.now();
     }
   });
-}
 
-/* ---- Dynamic content fetch -------------------------------- */
-
-async function fetchPageContent(pageId) {
-  if (!API_BASE_URL) return {};
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), CONTENT_FETCH_TIMEOUT);
-  try {
-    const resp = await fetch(`${API_BASE_URL}/api/content/${pageId}`, {
-      signal: controller.signal,
-    });
-    clearTimeout(timer);
-    if (!resp.ok) return {};
-    return await resp.json();
-  } catch (_) {
-    clearTimeout(timer);
-    return {};
-  }
+  window.addEventListener('beforeunload', () => {
+    if (visibleSince !== null) activeDuration += Date.now() - visibleSince;
+    const seconds = Math.round(activeDuration / 1000);
+    const payload = JSON.stringify({ type: 'duration', seconds, pageId, sessionId, visitId });
+    try {
+      fetch(`${API_BASE_URL}/hey`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+        keepalive: true,
+      });
+    } catch (_) { /* silent */ }
+  });
 }
 
 /* ---- Apply content overrides to data-content-id elements -- */
@@ -141,16 +196,16 @@ function applyContentOverrides(sections) {
 /* ---- Main init -------------------------------------------- */
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const pageId    = document.body.dataset.pageId || 'unknown';
+  const pageId    = (document.body.dataset.pageId || 'unknown') + (window.location.hash || '');
   const sessionId = getSessionId();
   const startTime = Date.now();
 
-  trackPageVisit(pageId, sessionId);
-  attachClickTracking(pageId, sessionId);
-  attachDurationTracking(pageId, sessionId, startTime);
+  const params = new URLSearchParams(window.location.search);
+  let referralSource = null;
+  for (const [key] of params) { referralSource = key; break; }
+  if (referralSource) history.replaceState({}, '', window.location.pathname);
 
-  const content = await fetchPageContent(pageId);
-  if (content.sections) {
-    applyContentOverrides(content.sections);
-  }
+  const visitId = await helloPage(pageId, sessionId, referralSource);
+  attachClickTracking(pageId, sessionId);
+  attachDurationTracking(pageId, sessionId, startTime, visitId);
 });
