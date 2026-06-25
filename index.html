@@ -65,23 +65,27 @@ building tools for neuroscience</p> -->
         Hello! I'm Brian, a programmer and maker currently building computational and physical
         tools for neuroscience research in the <a href="flavell-lab.html">Flavell Lab</a>
         at MIT. I come from academic backgrounds in Computer Science and Political Science, with no formal 
-        Neuro training, which reflects my philosophy of cross-disciplinary work and broad interest in 
+        Neuro training, which reflects my focus on cross-disciplinary work and broad interest in 
         learning. Outside the lab I'm usually running, dancing, or working on projects to make my life better.
       </p>
-      <p class="kicker kicker--no-rule" style="margin-top: var(--space-5);">&emsp;&emsp;Why would a CS-focused person study worms!??</p>
-      <br />
-      <p class="home-bio__para" data-content-id="bio-research">
-        Understanding how computational (living or silicon) systems use information to
-        make decisions is a fascinating question, but ultimately intractable with most
-        &ldquo;intelligent&rdquo; systems. Luckily there's levels to intelligence.
-        <em>C. elegans</em> is a tiny nematode with 302 neurons; few enough that we can watch
-        activity in every neuron across the whole brain as the animal moves freely, yet enough
-        that it can perform complex, goal-directed navigation, among many other complex behaviors.
-        <br />I've made tools to exploit this: a laser
-        system to control the animals thermosensation, and a real-time imaging pipeline
-        which extracts activity from every neuron in its head, providing a clean window into
-        how this biological computational system can process information and make decisions.
+      <p class="kicker kicker--no-rule" style="margin-top: var(--space-5); font-size: medium; margin-bottom: var(--space-3);">&emsp;&emsp;Why study worm neuroscience?</p>
+      <p class="home-bio__para" data-content-id="bio-research" style="font-size: medium; max-width: 75ch;">
+        &nbsp;&nbsp;&nbsp;&nbsp;A fair question for a CS-oriented person. It mostly comes from the fact that
+        if you want to answer questions about efficient, goal-directed decision making,
+        there really isn't a better place to start. <em>C.&nbsp;elegans</em> is a tiny nematode with 302 
+        neurons; few enough that we can record
+        activity in every neuron across the whole brain as the animal moves freely. Understanding
+        how they perform complex behaviors, including optimization tasks (e.g. moving towards chosen
+        cultivation temperatures), gives us insights
+        which can be applied to improving our own systems.
+        <br /><br style="line-height: 0.5em; font-size: 50%;"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;To do this effectively, you need to both control inputs and observe internal computations & states.
+        Even better if you can control the inputs based on the internal state. That's what my work has
+        made possible for the first time. Using a laser to change the temperature the worm experiences
+        alongside a whole-brain real-time imaging and activity-extraction pipeline, we essentially
+        have a debugger for a biological computational system.
       </p>
+      <br />
       <!-- <p>
         How do we use information to make decisions? How can we make a system that does the same thing?
         How can we do that efficiently?
@@ -96,7 +100,7 @@ building tools for neuroscience</p> -->
             <span class="link-card__title">Flavell Lab</span>
             <span class="link-card__arrow" aria-hidden="true">↗</span>
           </a>
-          <span class="link-card__desc">Laser thermotaxis, real-time neural imaging, and brain alignment</span>
+          <span class="link-card__desc">Real-time neural recording, laser thermotaxis, and brain alignment</span>
           <div class="link-card__sublinks">
             <a href="flavell-lab.html#autocell" class="link-card__sublink" data-track-click="true">Mind Reading</a>
             <a href="flavell-lab.html#laser" class="link-card__sublink" data-track-click="true">Lasers</a>

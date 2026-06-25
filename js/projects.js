@@ -86,7 +86,7 @@ const PROJECTS = [
   {
     id:          'grinsync',
     name:        'GrinSync',
-    description: 'A campus scheduling and event-coordination tool built as a team class project. I led the backend subgroup.',
+    description: 'A campus scheduling and event-coordination tool built as a team class project. I led the backend team.',
     badge:       'class',
     github:      'https://github.com/GrinSync',
     externalUrl: null,
@@ -135,7 +135,7 @@ const PROJECTS = [
     photo:       'images/projects/PersonalSiteScreenshot.png',
     phTone:      'ph-terra',
     badgeLabel:  null,
-    aiLevel:     4,
+    aiLevel:     3,
   },
 
   /* ── Solo ───────────────────────────────────────────────── */
@@ -199,10 +199,9 @@ function buildAIMeterHTML(level, opts = {}) {
   const { popoverAlign = 'left', popoverDir = 'down' } = opts;
 
   // Inline pips on the trigger
-  const pips = Array.from({ length: 4 }, (_, i) => {
-    // L0 → 0 filled, L1 → 1, L2 → 2, L3 → 4
-    const filled = safe === 3 ? 4 : safe;
-    const on = i < filled;
+  const pips = Array.from({ length: 3 }, (_, i) => {
+    // L0 → 0 filled, L1 → 1, L2 → 2, L3 → 3
+    const on = i < safe;
     return `<i class="${on ? 'on' : ''}"></i>`;
   }).join('');
 
@@ -210,9 +209,8 @@ function buildAIMeterHTML(level, opts = {}) {
 
   // Build the scale rows for the popover
   const scaleRows = AI_LEVELS.map((lvl, idx) => {
-    const filled = idx === 3 ? 4 : idx;
-    const rowPips = Array.from({ length: 4 }, (_, i) => {
-      const on = i < filled;
+    const rowPips = Array.from({ length: 3 }, (_, i) => {
+      const on = i < idx;
       return `<i class="${on ? 'on' : ''}"></i>`;
     }).join('');
     const isCurrent = idx === safe;
